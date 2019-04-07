@@ -31,7 +31,7 @@ def get_user_input(message, user_list):
             break
         if user_data == 'all':
             break
-    
+
     return user_data
 
 def get_filters():
@@ -42,7 +42,7 @@ def get_filters():
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
-    print('Hello! Let\'s explore US bikeshare data!')
+    print('Hello! Let\'s explore US bikeshare data specific to Chicago, New York or Washington!')
 
     # get user input for city (chicago, new york, washington). HINT: Use a while loop to handle invalid inputs
     while True:
@@ -60,7 +60,7 @@ def get_filters():
 
     print('-'*40)
     return city, month, day
-    
+
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
@@ -154,7 +154,7 @@ def trip_duration_stats(df):
     df['End Time'] = pd.to_datetime(df['End Time'])
     df['Travel Time'] = df['End Time'] - df['Start Time']
     #sum for total trip time, mean for avg trip time
- 
+
     total_travel_time = np.sum(df['Travel Time'])
 
     totalDays = str(total_travel_time).split()[0]
@@ -168,8 +168,8 @@ def trip_duration_stats(df):
     print("The average travel time was " + averageDays + " days \n")
 
     return total_travel_time, average_travel_time
-    
-    
+
+
 def user_stats(df):
     """Displays statistics on bikeshare users."""
 
@@ -179,10 +179,10 @@ def user_stats(df):
     # Display counts of user types
     print("Counts of user types:\n")
     user_counts = df['User Type'].value_counts()
-    # iteratively print out the total numbers of user types 
+    # iteratively print out the total numbers of user types
     for index, user_count in enumerate(user_counts):
         print("  {}: {}".format(user_counts.index[index], user_count))
-    
+
     print()
 
     if 'Gender' in df.columns:
@@ -201,12 +201,12 @@ def user_stats_gender(df):
     # Display counts of gender
     print("Counts of gender:\n")
     gender_counts = df['Gender'].value_counts()
-    # iteratively print out the total numbers of genders 
+    # iteratively print out the total numbers of genders
     for index,gender_count   in enumerate(gender_counts):
         print("  {}: {}".format(gender_counts.index[index], gender_count))
-    
+
     print()
-    
+
 
 def user_stats_birth(df):
     """Displays statistics of analysis based on the birth years of bikeshare users."""
@@ -222,20 +222,20 @@ def user_stats_birth(df):
     # the most earliest birth year
     earliest_year = birth_year.min()
     print("The most earliest birth year:", earliest_year)
-    
+
 def display_data(df):
     """Displays raw bikeshare data."""
     row_length = df.shape[0]
 
     # iterate from 0 to the number of rows in steps of 5
     for i in range(0, row_length, 5):
-        
+
         yes = input('\nWould you like to examine the particular user trip data? Type \'yes\' or \'no\'\n> ')
         if yes.lower() != 'yes':
             break
-        
+
         # retrieve and convert data to json format
-        # split each json row data 
+        # split each json row data
         row_data = df.iloc[i: i + 5].to_json(orient='records', lines=True).split('\n')
         for row in row_data:
             # pretty print each user data
@@ -253,7 +253,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
         display_data(df)
-        
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
