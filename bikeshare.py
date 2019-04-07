@@ -224,7 +224,7 @@ def user_stats_birth(df):
     print("The most earliest birth year:", earliest_year)
 
 def display_data(df):
-    """Displays raw bikeshare data."""
+    """Displays raw bikeshare data for 3 cities."""
     row_length = df.shape[0]
 
     # iterate from 0 to the number of rows in steps of 5
